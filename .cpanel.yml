@@ -1,13 +1,25 @@
 deployment:
   tasks:
-    # Set the deploy path to public_html or where your app should be served from
+    # Set the deploy path to public_html (which is where your Git repo is located)
     - export DEPLOYPATH=/home/hs0003173/public_html
+
+    # Navigate to the public_html directory where your repository is
+    - cd /home/hs0003173/public_html
+
+    # Install dependencies (if you're using npm or yarn)
+    - npm install
+
+    # Build the Next.js app
+    - npm run build
+
+    # Export the static site to 'out/' folder
+    - npm run export
 
     # Clean up the existing content in the deployment path
     - rm -rf $DEPLOYPATH/*
 
-    # Copy the content from the build folder (replace 'out' with actual output folder)
-    - /bin/cp -r /home/hs0003173/repositories/BrightFlow1/out/* $DEPLOYPATH
+    # Copy the content from the 'out' folder (the static files)
+    - /bin/cp -r /home/hs0003173/public_html/out/* $DEPLOYPATH
 
     # Set correct permissions (755 for directories and files)
     - chmod -R 755 $DEPLOYPATH
