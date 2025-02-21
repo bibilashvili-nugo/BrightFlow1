@@ -1,24 +1,13 @@
----
 deployment:
   tasks:
-    # Set the deployment path on the server
-    - export DEPLOYPATH=/home/hs0003173/public_html/
+    # Define your deployment path
+    - export DEPLOYPATH=/home/hs0003173/public_html/my_project/
 
-    # Build the project (Make sure you're using a Node.js environment on cPanel)
-    - cd /home/hs0003173/my_project_directory
-    - npm install
-    - npm run build
+    # Remove old files (optional)
+    - rm -rf $DEPLOYPATH/*
 
-    # Copy the Next.js build output to the public_html directory
-    - /bin/cp -r .next/ $DEPLOYPATH/.next
-    - /bin/cp -r public/ $DEPLOYPATH/public
-    - /bin/cp -r out/ $DEPLOYPATH/out
+    # Copy files from the `out` folder to the server
+    - /bin/cp -r out/* $DEPLOYPATH
 
-    # Ensure all static files (e.g., images, CSS, JS) are copied
-    - /bin/cp -r styles/ $DEPLOYPATH/styles
-    - /bin/cp -r assets/ $DEPLOYPATH/assets
-    - /bin/cp index.html $DEPLOYPATH
-
-    # Run Next.js server (optional, if you're hosting with Node.js server)
-    - cd $DEPLOYPATH
-    - npm run start
+    # Set file permissions (optional but good practice)
+    - chmod -R 755 $DEPLOYPATH
