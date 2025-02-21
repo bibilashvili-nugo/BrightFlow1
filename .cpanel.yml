@@ -1,6 +1,13 @@
 deployment:
   tasks:
+    # Set the deploy path to public_html or where your app should be served from
     - export DEPLOYPATH=/home/hs0003173/public_html
+
+    # Clean up the existing content in the deployment path
     - rm -rf $DEPLOYPATH/*
-    - /bin/cp -r out/* $DEPLOYPATH
+
+    # Copy the content from the build folder (replace 'out' with actual output folder)
+    - /bin/cp -r /home/hs0003173/repositories/BrightFlow1/out/* $DEPLOYPATH
+
+    # Set correct permissions (755 for directories and files)
     - chmod -R 755 $DEPLOYPATH
