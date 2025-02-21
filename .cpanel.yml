@@ -1,7 +1,7 @@
 deployment:
   tasks:
     # Define your deployment path
-    - export DEPLOYPATH=/home/hs0003173/public_html/my_project/
+    - export DEPLOYPATH=/home/hs0003173/public_html
 
     # Remove old files (optional)
     - rm -rf $DEPLOYPATH/*
