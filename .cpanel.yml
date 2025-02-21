@@ -1,13 +1,6 @@
 deployment:
   tasks:
-    # Define your deployment path
     - export DEPLOYPATH=/home/hs0003173/public_html
-
-    # Remove old files (optional)
     - rm -rf $DEPLOYPATH/*
-
-    # Copy files from the `out` folder to the server
     - /bin/cp -r out/* $DEPLOYPATH
-
-    # Set file permissions (optional but good practice)
     - chmod -R 755 $DEPLOYPATH
